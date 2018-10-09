@@ -50,20 +50,34 @@ class App extends Component {
 
     return (
       <SocketContext.Consumer>
-        {({ addToCart, cart, connectEstablished }) => {
-          if (connectEstablished) return null;
+        {({ addToCart, cart, authorized }) => {
+          if (!authorized || !cart) return null;
 
           return (
-            <div className="App">
-              <Flipper flipKey={isFullscreen}>
-                {isFullscreen ? (
-                  <Cart onClick={this.toggleFullscreen} />
-                ) : (
-                  <CarButton onClick={this.toggleFullscreen} />
-                )}
-              </Flipper>
-              <button onClick={this.handleButton(addToCart)}>Send</button>
-            </div>
+            <table>
+              <thead>
+                {cart.map(el => {
+                  return (
+                    <tr>
+                      {Object.entries(el.owner).map(([key, val]) => (
+                        <td>{key}</td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </thead>
+              <tbody>
+                {cart.map(el => {
+                  return (
+                    <tr>
+                      {Object.entries(el.owner).map(([_, val]) => (
+                        <td>{val.toString()}</td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           );
         }}
       </SocketContext.Consumer>

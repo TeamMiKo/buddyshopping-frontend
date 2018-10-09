@@ -4,7 +4,10 @@ import styled from "react-emotion";
 export default class ShopWithFriendsButton extends Component {
   render() {
     return (
-      <Button onClick={this.props.onClick} className="btn btn-primary">
+      <Button
+        onClick={this.props.onClick}
+        className="ecwid-btn ecwid-btn--primary"
+      >
         Shop with friends
       </Button>
     );

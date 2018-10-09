@@ -10,10 +10,6 @@ export default class ShopWithFriendsButton extends Component {
     this.textInput = React.createRef();
   }
 
-  static getDerivedStateFromProps(props, state) {
-    return { ...state, status: props.connectStatus };
-  }
-
   state = {
     status: "input"
   };
@@ -63,15 +59,6 @@ export default class ShopWithFriendsButton extends Component {
           </div>
         );
 
-      case "connecting":
-        return (
-          <div className="a-card a-card--normal">
-            <div className="a-card__paddings">
-              <h4 className="h4">Устанавливаю соединение с сервером...</h4>
-              <div className="text-default">{this.makeUrl()}</div>
-            </div>
-          </div>
-        );
       default:
         return null;
     }

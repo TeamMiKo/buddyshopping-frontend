@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import ShopWithFriendsButton from "./ShopWithFriendsButton";
 import StartUpModal from "./Containers/StartUpModal";
+import styled from "react-emotion";
+import App from "./App";
 
 export default class Instance extends Component {
   state = {
@@ -10,12 +12,14 @@ export default class Instance extends Component {
   };
 
   setName = name => {
-    this.setState({ name });
-    this.props.startSession(name);
+    this.connectionPromise.then(() => {
+      this.setState({ name });
+      this.props.startSession(name);
+    });
   };
 
   showModal = () => {
-    this.props.connect();
+    this.connectionPromise = this.props.connect();
     this.setState({ showModal: true });
   };
 
@@ -31,16 +35,22 @@ export default class Instance extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Container>
         <ShopWithFriendsButton onClick={this.showModal} />
         <StartUpModal
-          connecting={this.props.connectStatus === "connecting"}
+          connectStatus={this.props.connectStatus}
           visible={this.state.showModal}
           onClose={this.hideModal}
           onSubmit={this.setName}
           sessionId={this.props.motherId}
         />
-      </Fragment>
+        <App />
+      </Container>
     );
   }
 }
+
+const Container = styled("div")`
+  text-align: center;
+  padding-bottom: 10px !important;
+`;

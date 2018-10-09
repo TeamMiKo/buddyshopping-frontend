@@ -5,7 +5,7 @@ import Instance from "./Instanse";
 import sessionStorageService from "./sessionStorageService";
 
 const serverUrl = "wss://buddyshopping.now.sh";
-const protocols = ["86aa6d449d3de20132e08d77b909547d"];
+const protocols = ["a9c06a4168967c89b1a54ee802f6a507"];
 
 export const SocketContext = React.createContext(2);
 
@@ -17,14 +17,37 @@ export default class EcwidProvider extends Component {
     this.state = {
       connectStatus: "offline",
       connectEstablished: false,
-      cart: {}
+      cart: null
     };
 
-    this.connectUrl = `${serverUrl}/${this.state.motherId}`;
+    this.connectUrl = `${serverUrl}/${this.motherId}`;
+    this.resolveConnectionPromise = Function.prototype;
+    this.rejectConnectionPromise = Function.prototype;
   }
+
+  eventHandler = async ({ data }) => {
+    const { event, payload } = await JSON.parse(data);
+    print.blue("event: ", event);
+    console.log(payload);
+
+    switch (event) {
+      case "startSession":
+        this.setSocketStatus("authorized");
+        window.Ecwid.OnCartChanged.add(this.onCartChange);
+        break;
+      case "multicartUpdate":
+        this.setSocketStatus("authorized");
+        this.setState({ cart: payload.multicartContent });
+        break;
+
+      default:
+        break;
+    }
+  };
 
   getMotherId() {
     const motherId = sessionStorageService.get("motherId");
+
     if (motherId) return motherId;
     return sessionStorageService.set("motherId", nanoid());
   }
@@ -34,6 +57,10 @@ export default class EcwidProvider extends Component {
     this.setSocketStatus("connecting");
     this.socket = new WebSocket(this.connectUrl, protocols);
     this.setupSocket();
+    return new Promise((resolve, reject) => {
+      this.resolveConnectionPromise = resolve;
+      this.rejectConnectionPromise = reject;
+    });
   };
 
   setupSocket() {
@@ -51,13 +78,14 @@ export default class EcwidProvider extends Component {
       event: "startSession",
       payload: { customerName: name }
     });
+    print.blue("Стартую сессию", this.connectUrl);
   };
 
   onOpenSocket() {
     this.socket.onopen = () => {
       print.green("Соединение установленно", this.connectUrl);
+      this.resolveConnectionPromise();
       this.setSocketStatus("connected");
-      this.startSession();
     };
 
     this.socket.onmessage = this.onMessage;
@@ -71,6 +99,7 @@ export default class EcwidProvider extends Component {
         print.red("Обрыв соединение");
       }
       print.brown("Код: " + event.code + " причина: " + event.reason);
+      this.rejectConnectionPromise(event);
       this.setSocketStatus("disconnect");
     };
   }
@@ -79,20 +108,26 @@ export default class EcwidProvider extends Component {
     this.socket.onerror = error => {
       console.log(error.message);
       print.red("Ошибка соединение", error.message);
-      this.setSocketStatus(false);
+      this.setSocketStatus("error");
     };
   }
 
-  onMessage(event) {
-    console.log(event);
-
-    this.setState = {
-      cart: event.data
-    };
-  }
+  onMessage = event => {
+    this.eventHandler(event);
+  };
 
   sendToSocket = event => {
+    print.yellow("sendToSocket", event.type);
+    console.log(event.payload);
     this.socket.send(JSON.stringify(event));
+  };
+
+  onCartChange = cart => {
+    print.yellow("onCartChange");
+    this.sendToSocket({
+      event: "updateCart",
+      payload: cart
+    });
   };
 
   render() {
@@ -101,7 +136,7 @@ export default class EcwidProvider extends Component {
       <SocketContext.Provider
         value={{
           cart,
-          connectEstablished,
+          authorized: connectStatus === "authorized",
           addToCart: this.sendToSocket
         }}
       >
