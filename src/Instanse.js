@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import ShopWithFriendsButton from "./ShopWithFriendsButton";
 import StartUpModal from "./Containers/StartUpModal";
+import Cart from "./Containers/Cart";
 import styled from "react-emotion";
-import App from "./App";
+
 
 export default class Instance extends Component {
   state = {
@@ -34,9 +35,11 @@ export default class Instance extends Component {
   onConnectError = () => {};
 
   render() {
+    const {connectStatus} = this.props;
     return (
       <Container>
         <ShopWithFriendsButton onClick={this.showModal} />
+        {connectStatus === 'authorized' && <Cart/>}
         <StartUpModal
           connectStatus={this.props.connectStatus}
           visible={this.state.showModal}
@@ -44,7 +47,6 @@ export default class Instance extends Component {
           onSubmit={this.setName}
           sessionId={this.props.motherId}
         />
-        <App />
       </Container>
     );
   }

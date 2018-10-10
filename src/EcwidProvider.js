@@ -16,6 +16,7 @@ export default class EcwidProvider extends Component {
     this.motherId = this.getMotherId();
     this.state = {
       connectStatus: "offline",
+      customerId: undefined,
       connectEstablished: false,
       cart: null
     };
@@ -33,7 +34,8 @@ export default class EcwidProvider extends Component {
     switch (event) {
       case "startSession":
         this.setSocketStatus("authorized");
-        window.Ecwid.OnCartChanged.add(this.onCartChange);
+        this.setCustomerId(payload.customerId);
+        window.Ecwid.OnCartChanged.add(this.onCartInit(payload.customerId));
         break;
       case "multicartUpdate":
         this.setSocketStatus("authorized");
@@ -71,6 +73,9 @@ export default class EcwidProvider extends Component {
 
   setSocketStatus(connectStatus) {
     this.setState({ connectStatus });
+  }
+  setCustomerId(setCustomerId) {
+    this.setState({ setCustomerId });
   }
 
   startSession = name => {
@@ -122,11 +127,26 @@ export default class EcwidProvider extends Component {
     this.socket.send(JSON.stringify(event));
   };
 
-  onCartChange = cart => {
+  
+  onCartInit = customerId => cartContent => {
+    print.yellow("onCartInit");
+    this.sendToSocket({
+      event: "updateCart",
+      payload:  {
+        customerId,
+        cartContent
+      }
+    });
+  };
+
+  onCartChange = (cartContent) => {
     print.yellow("onCartChange");
     this.sendToSocket({
       event: "updateCart",
-      payload: cart
+      payload:  {
+        customerId: this.state.customerId,
+        cartContent
+      }
     });
   };
 

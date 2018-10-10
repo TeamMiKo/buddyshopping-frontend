@@ -5,6 +5,7 @@
   "dependencies": {
     "emotion": "^9.2.12",
     "nanoid": "^1.2.4",
+    "ramda": "^0.25.0",
     "rc-dialog": "^7.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
