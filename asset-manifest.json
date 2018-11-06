@@ -1,15 +1,11 @@
 {
-  "main.css": "/buddyshopping-frontend/static/css/main.5c4cbc1d.chunk.css",
-  "main.js": "/buddyshopping-frontend/static/js/main.98baed9a.chunk.js",
-  "main.js.map": "/buddyshopping-frontend/static/js/main.98baed9a.chunk.js.map",
-  "static/css/1.234dc4b6.chunk.css": "/buddyshopping-frontend/static/css/1.234dc4b6.chunk.css",
-  "static/js/1.6ce53259.chunk.js": "/buddyshopping-frontend/static/js/1.6ce53259.chunk.js",
-  "static/js/1.6ce53259.chunk.js.map": "/buddyshopping-frontend/static/js/1.6ce53259.chunk.js.map",
-  "runtime~main.js": "/buddyshopping-frontend/static/js/runtime~main.883b7ea2.js",
-  "runtime~main.js.map": "/buddyshopping-frontend/static/js/runtime~main.883b7ea2.js.map",
-  "static/css/main.5c4cbc1d.chunk.css.map": "/buddyshopping-frontend/static/css/main.5c4cbc1d.chunk.css.map",
-  "static/css/1.234dc4b6.chunk.css.map": "/buddyshopping-frontend/static/css/1.234dc4b6.chunk.css.map",
+  "main.css": "/buddyshopping-frontend/static/css/main.chunk.css",
+  "main.js": "/buddyshopping-frontend/static/js/main.js",
+  "main.js.map": "/buddyshopping-frontend/static/js/main.js.map",
+  "runtime~main.js": "/buddyshopping-frontend/static/js/runtime~main.js",
+  "runtime~main.js.map": "/buddyshopping-frontend/static/js/runtime~main.js.map",
+  "static/css/main.chunk.css.map": "/buddyshopping-frontend/static/css/main.chunk.css.map",
   "index.html": "/buddyshopping-frontend/index.html",
-  "precache-manifest.1d75a3dbb5a7b59433fd7e3fd0e82095.js": "/buddyshopping-frontend/precache-manifest.1d75a3dbb5a7b59433fd7e3fd0e82095.js",
+  "precache-manifest.d98e72b09972aab4b7539290bcf52327.js": "/buddyshopping-frontend/precache-manifest.d98e72b09972aab4b7539290bcf52327.js",
   "service-worker.js": "/buddyshopping-frontend/service-worker.js"
 }
