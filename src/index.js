@@ -4,6 +4,9 @@ import "./index.css";
 import EcwidProvider from "./EcwidProvider";
 import registerServiceWorker from "./registerServiceWorker";
 
+
+alert('IT WORKS')
+
 function setupApp() {
   window.EcwidApp.init({
     app_id: "buddy-shopping-dev",
