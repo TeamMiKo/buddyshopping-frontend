@@ -5,10 +5,10 @@ import Instance from "./Instanse";
 import sessionStorageService from "./sessionStorageService";
 import CartService from "./CartService";
 
-// const serverUrl = "wss://buddyshopping.now.sh";
-// const protocols = ["a9c06a4168967c89b1a54ee802f6a507"];
-const serverUrl = "ws://localhost:8080";
-const protocols = ["secret"];
+const serverUrl = "wss://buddyshopping.now.sh";
+const protocols = ["a9c06a4168967c89b1a54ee802f6a507"];
+// const serverUrl = "ws://localhost:8080";
+// const protocols = ["secret"];
 
 export const SocketContext = React.createContext(2);
 
