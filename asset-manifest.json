@@ -6,6 +6,6 @@
   "runtime~main.js.map": "/buddyshopping-frontend/static/js/runtime~main.js.map",
   "static/css/main.chunk.css.map": "/buddyshopping-frontend/static/css/main.chunk.css.map",
   "index.html": "/buddyshopping-frontend/index.html",
-  "precache-manifest.d98e72b09972aab4b7539290bcf52327.js": "/buddyshopping-frontend/precache-manifest.d98e72b09972aab4b7539290bcf52327.js",
+  "precache-manifest.ae34f44fdefbe007d808ce2462e0151f.js": "/buddyshopping-frontend/precache-manifest.ae34f44fdefbe007d808ce2462e0151f.js",
   "service-worker.js": "/buddyshopping-frontend/service-worker.js"
 }
