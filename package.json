@@ -2,9 +2,11 @@
   "name": "ecwid-multi-cart-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://teammiko.github.io/buddyshopping-frontend",
   "dependencies": {
     "antd": "^3.10.0",
     "emotion": "^9.2.12",
+    "gh-pages": "^2.0.1",
     "nanoid": "^1.2.4",
     "ramda": "^0.25.0",
     "rc-dialog": "^7.2.1",
@@ -18,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
