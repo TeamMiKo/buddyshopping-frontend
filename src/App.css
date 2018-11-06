@@ -1,48 +1,10 @@
+@import '~antd/dist/antd.css';
 
-.square {
-  width: 200px;
-  height: 200px;
-  cursor: pointer;
-  background-color: #7971ea;
+
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0;
 }
 
-.full-screen-square {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
-.transform-example-container {
-  height: 100vh;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ant-table-small {
+  border: none;
 }

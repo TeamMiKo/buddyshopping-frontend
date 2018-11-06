@@ -30,13 +30,6 @@ function getStoreData() {
 }
 
 function renderApp(page) {
-  console.log(
-    `%c info %c ${page.type} %c !!! `,
-    "background-color: #1E88E5; color: #fff; padding: 2px; font-weight: bold;",
-    "background-color: #90CAF9; padding: 2px;",
-    "background-color: #1E88E5; color: #fff; padding: 2px; font-weight: bold;"
-  );
-
   if (page.type === "PRODUCT") {
     let div = document.getElementById("buddy-shopping");
 
