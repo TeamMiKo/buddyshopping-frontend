@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "58e817e7caeb9bfcedd5",
+    "revision": "642c8d8f5c4c1557598f",
     "url": "/buddyshopping-frontend/static/js/main.js"
   },
   {
-    "revision": "58e817e7caeb9bfcedd5",
+    "revision": "642c8d8f5c4c1557598f",
     "url": "/buddyshopping-frontend/static/css/main.css"
   },
   {
