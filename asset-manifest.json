@@ -1,9 +1,9 @@
 {
-  "main.css": "/buddyshopping-frontend/static/css/main.css",
+  "main.css": "/buddyshopping-frontend/static/css/main.chunk.css",
   "main.js": "/buddyshopping-frontend/static/js/main.js",
   "main.js.map": "/buddyshopping-frontend/static/js/main.js.map",
-  "static/css/main.css.map": "/buddyshopping-frontend/static/css/main.css.map",
+  "static/css/main.chunk.css.map": "/buddyshopping-frontend/static/css/main.chunk.css.map",
   "index.html": "/buddyshopping-frontend/index.html",
-  "precache-manifest.791e7a77ee6a01a3c360d8cee78dc3ff.js": "/buddyshopping-frontend/precache-manifest.791e7a77ee6a01a3c360d8cee78dc3ff.js",
+  "precache-manifest.ffc1ac2e7187341cb1f546cdf5a9ed17.js": "/buddyshopping-frontend/precache-manifest.ffc1ac2e7187341cb1f546cdf5a9ed17.js",
   "service-worker.js": "/buddyshopping-frontend/service-worker.js"
 }

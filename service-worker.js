@@ -15,7 +15,7 @@ importScripts("/buddyshopping-frontend/workbox-v3.6.2/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/buddyshopping-frontend/workbox-v3.6.2"});
 
 importScripts(
-  "/buddyshopping-frontend/precache-manifest.791e7a77ee6a01a3c360d8cee78dc3ff.js"
+  "/buddyshopping-frontend/precache-manifest.ffc1ac2e7187341cb1f546cdf5a9ed17.js"
 );
 
 workbox.clientsClaim();
