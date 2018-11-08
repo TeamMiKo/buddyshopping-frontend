@@ -23,12 +23,6 @@ class App extends Component {
   };
 
   toggleFullscreen = () => {
-    console.log(
-      `%c info %c click %c !!! `,
-      "background-color: #1E88E5; color: #fff; padding: 2px; font-weight: bold;",
-      "background-color: #90CAF9; padding: 2px;",
-      "background-color: #1E88E5; color: #fff; padding: 2px; font-weight: bold;"
-    );
     if (this.state.mode !== "fullscreen") {
       this.setState({ mode: "fullscreen" });
     } else {

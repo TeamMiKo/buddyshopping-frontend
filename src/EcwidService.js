@@ -32,5 +32,8 @@ export default {
   },
   gotoCheckout() {
     window.Ecwid.Cart.gotoCheckout();
+  },
+  openPage(page, options) {
+    window.Ecwid.openPage(page, options);
   }
 };

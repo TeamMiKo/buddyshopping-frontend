@@ -4,6 +4,7 @@ import { print, getParameterByName } from "./utils";
 import Instance from "./Instanse";
 import sessionStorageService from "./sessionStorageService";
 import CartService from "./CartService";
+import { notification } from "antd";
 
 const serverUrl = "wss://buddyshopping.now.sh";
 const protocols = ["a9c06a4168967c89b1a54ee802f6a507"];
@@ -29,6 +30,7 @@ export default class EcwidProvider extends Component {
     this.connectUrl = `${serverUrl}/${this.motherId}`;
     this.resolveConnectionPromise = Function.prototype;
     this.rejectConnectionPromise = Function.prototype;
+    this.resolveStartSessionPromise = Function.prototype;
   }
 
   eventHandler = async ({ data }) => {
@@ -87,11 +89,17 @@ export default class EcwidProvider extends Component {
   }
 
   startSession = name => {
+    this.setSocketStatus("startSession");
     this.sendToSocket({
       event: "startSession",
       payload: { customerName: name }
     });
     print.blue("Стартую сессию", this.connectUrl);
+    notification.success({
+      message: "You successfully start the buddy cart session",
+      description:
+        'Share link with your friends. Start shopping and after you ready to place your order click "Ready to checkout" button in buddy cart menu. After all members will be ready you can Gо to checkout from buddy cart menu'
+    });
   };
 
   joinSession = name => {
@@ -100,6 +108,11 @@ export default class EcwidProvider extends Component {
       payload: { customerName: name }
     });
     print.blue("Коннект к сессии", this.connectUrl);
+    notification.success({
+      message: "You successfully connect to buddy cart",
+      description:
+        'Start shopping and after you ready to place your order click "Ready to checkout" button in buddy cart menu'
+    });
   };
 
   onOpenSocket() {
@@ -181,7 +194,7 @@ export default class EcwidProvider extends Component {
   };
 
   render() {
-    const { connectEstablished, cart, connectStatus } = this.state;
+    const { cart, connectStatus } = this.state;
     return (
       <SocketContext.Provider
         value={{
@@ -191,6 +204,8 @@ export default class EcwidProvider extends Component {
         }}
       >
         <Instance
+          allReadyToCheckout={CartService.allReadyToCheckout(cart)}
+          usersCount={(cart && cart.length) || 0}
           onReadyToCheckout={this.onReadyToCheckout}
           customerId={this.state.customerId}
           isClientInstance={this.isClientInstance}

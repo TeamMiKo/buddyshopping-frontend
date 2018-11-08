@@ -45,9 +45,10 @@ export default class Cart extends Component {
   };
 
   onReadyToCheckOut(cart) {
-    this.hideModal();
+    this.props.hideModal();
     EcwidService.clear();
     EcwidService.addProductsFromCart(cart);
+    EcwidService.openPage("cart");
   }
 
   renderFooter = cart => {
@@ -56,34 +57,37 @@ export default class Cart extends Component {
       !isClientInstance && !CartService.allReadyToCheckout(cart);
     return (
       <Fragment>
-        <Button
-          onClick={() => {
-            copyToClipboard(
-              UpdateQueryString("buddyshoppingId", this.props.sessionId)
-            );
-            message.success("Successful copied");
-          }}
-        >
-          Copy invite link
-        </Button>
-        <Button
-          type="default"
-          onClick={() =>
-            this.props.onReadyToCheckout(true, this.props.customerId)
-          }
-        >
-          Ready to checkout!
-        </Button>
-
-        {!isClientInstance && (
+        <Divider />
+        <ButtonContainer>
           <Button
-            disabled={isDisabled}
-            type="primary"
-            onClick={() => this.onReadyToCheckOut(cart)}
+            onClick={() => {
+              copyToClipboard(
+                UpdateQueryString("buddyshoppingId", this.props.sessionId)
+              );
+              message.success("Successful copied");
+            }}
           >
-            Go to checkout
+            Copy invite link
           </Button>
-        )}
+          <Button
+            type="default"
+            onClick={() =>
+              this.props.onReadyToCheckout(true, this.props.customerId)
+            }
+          >
+            Ready to checkout!
+          </Button>
+
+          {!isClientInstance && (
+            <Button
+              disabled={isDisabled}
+              type="primary"
+              onClick={() => this.onReadyToCheckOut(cart)}
+            >
+              Go to checkout
+            </Button>
+          )}
+        </ButtonContainer>
       </Fragment>
     );
   };
@@ -167,19 +171,8 @@ export default class Cart extends Component {
     if (!cart) return;
     return (
       <Fragment>
-        <Button onClick={this.showModal} size="large" type="primary" ghost>
-          Buddy Cart
-        </Button>
-        <Modal
-          visible={this.state.visible}
-          onClose={this.hideModal}
-          title="Список совместных покупок"
-          footer={this.renderFooter(cart)}
-        >
-          <div className="fieldsets-batch fieldsets-batch--with-single-field">
-            {this.renderContent(cart)}
-          </div>
-        </Modal>
+        {this.renderContent(cart)}
+        {this.renderFooter(cart)}
       </Fragment>
     );
   };
@@ -191,5 +184,11 @@ export default class Cart extends Component {
 const PanelHeader = styled("div")`
   display: flex;
   justify-content: space-between;
+  padding-right: 16px;
+`;
+
+const ButtonContainer = styled("div")`
+  display: inline-flex;
+  justify-content: flex-end;
   padding-right: 16px;
 `;

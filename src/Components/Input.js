@@ -13,8 +13,6 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    console.log(this.input);
-
     this.input.current.addEventListener("input", function() {
       if (this.value) {
         this.parentNode.classList.add("field--filled");

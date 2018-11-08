@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Input, Form, Button, message } from "antd";
+import { Input, Form, Button, message, Spin } from "antd";
 import styled from "react-emotion";
 import Modal from "../Components/Modal";
 import { UpdateQueryString } from "../utils";
@@ -108,6 +108,13 @@ class ShopWithFriendsButton extends Component {
                 Copy
               </Button>
             </FormItem>
+            <br />
+            <br />
+            <p>
+              Share this link with friends and start shopping together. <br />
+              After all people will be ready to checkout you can place your.
+              order.
+            </p>
           </Form>
         );
       }
@@ -127,16 +134,18 @@ class ShopWithFriendsButton extends Component {
 
   render() {
     return (
-      <Modal
-        visible={this.props.visible}
-        onClose={this.props.onClose}
-        title="пожалуйста представьтесь"
-        footer={this.renderFooter()}
-      >
-        <div className="fieldsets-batch fieldsets-batch--with-single-field">
-          {this.renderContent()}
-        </div>
-      </Modal>
+      // <Modal
+      //   visible={this.props.visible}
+      //   onClose={this.props.onClose}
+      //   title="пожалуйста представьтесь"
+      //   footer={this.renderFooter()}
+      // >
+      // <div className="fieldsets-batch fieldsets-batch--with-single-field">
+      <Spin spinning={this.props.connecting} tip="connecting...">
+        {this.renderContent()}
+      </Spin>
+      // </div>
+      // </Modal>
     );
   }
 }
